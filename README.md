@@ -1,6 +1,6 @@
 # Linux-management
 # LINUX
-# Azure Account Setup  
+# Azure Account Setup   
 1. Created a Microsoft Azure account using my university-provided email address.  
 2. Learned about cloud computing and its importance.  
 3. Activated student benefits and set up a student account, receiving *$100* in Azure credits for use within the platform.  
