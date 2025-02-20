@@ -337,3 +337,132 @@ sudo apt-mark unhold zim
 ![](![Screenshot (14)](https://github.com/user-attachments/assets/c1050337-158a-4254-b37e-3f247e887f9b)
 
 
+
+
+# Part 1: Virtualization Concepts
+
+### Research on Virtualization Concepts
+
+Virtualization enables running multiple operating systems or applications on the same physical machine using a hypervisor. There are two main types of virtualization:
+
+Full Virtualization (VMs): Uses a hypervisor to emulate hardware and run multiple OS instances.
+
+Container-Based Virtualization: Uses OS-level isolation to run multiple applications in isolated user spaces.
+
+# Part 2: Working with Multipass
+
+# Installing Multipass
+
+```bash
+sudo snap install multipass
+```
+### Basic Multipass Commands
+
+### Launching a Default Ubuntu Instance
+```bash
+multipass launch --name test-vm
+```
+### Listing Instances
+```bash
+multipass list
+```
+### Accessing the Instance Shell
+```bash
+multipass shell test-vm
+```
+### Cloud-init Configuration
+
+### Created a cloud-init.yaml file:
+```bash
+#cloud-config
+package_update: true
+packages:
+  - nginx
+  - htop
+users:
+  - name: student
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+```
+### Screenshot 
+![](![WhatsApp Image 2025-02-20 at 23 45 16_dd67989e](https://github.com/user-attachments/assets/d7b9b02b-95df-491c-b5c3-ca9b027d5d62)
+![](![WhatsApp Image 2025-02-20 at 23 45 16_2fcb9ec6](https://github.com/user-attachments/assets/88362c97-22e2-4233-bef2-c6c75a51bdb6)
+
+
+
+
+### Launching a Multipass VM with Cloud-Init
+```bash
+multipass launch --name my-cloud-vm --cloud-init cloud-init.yaml
+```
+### Verifying Nginx Installation
+```bash
+multipass shell my-cloud-vm
+systemctl status nginx
+```
+# Screenshot
+![](![WhatsApp Image 2025-02-20 at 23 45 19_30167942](https://github.com/user-attachments/assets/5b0bb256-85ee-45b2-aa5c-1e921b509e51)
+
+
+# Part 3: Exploring LXD
+
+### Installing and Initializing LXD
+```bash
+sudo apt update
+sudo apt install -y lxd
+```
+### Creating container
+```bash
+lxc launch ubuntu:20.04 my-container
+lxc list
+lxc exec my-container -- bash
+lxc stop my-container
+lxc delete my-container
+```
+
+
+
+### Part 4: Working with Docker
+
+# Installing Docker
+# Installing and Initializing LXD
+# Installing and Initializing LXD
+```bash
+sudo apt update
+sudo apt install -y docker.io
+sudo systemctl enable --now docker
+```
+# Creating a Simple Dockerfile
+### Installing and Initializing LXD
+```bash
+FROM ubuntu:20.04
+RUN apt update && apt install -y nginx
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+### Screenshot
+![](![WhatsApp Image 2025-02-20 at 23 45 18_fcffcb05](https://github.com/user-attachments/assets/ac4c5674-2fc2-4183-8c0d-0497eab44bae)
+
+
+
+# Part 5: Working with Snaps
+### Installing Snapcraft
+```bash
+sudo snap install snapcraft --classic
+```
+# Packaging a Simple App into a Snap
+### Created a snapcraft.yaml file:
+```bash
+name: my-snap
+base: core20
+version: '1.0'
+summaries: My first snap
+architectures: [amd64]
+apps:
+  my-app:
+    command: echo "Hello, Snap!"
+```
+# Screenshot
+![](![WhatsApp Image 2025-02-20 at 23 45 16_2fcb9ec6](https://github.com/user-attachments/assets/a78ef22a-a903-48ca-b9de-040faa8fc173)
+
+
+
